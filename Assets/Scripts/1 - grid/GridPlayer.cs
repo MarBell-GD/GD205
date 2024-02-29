@@ -5,14 +5,18 @@ using UnityEngine;
 public class GridPlayer : MonoBehaviour
 {
 
-    public Transform start;
+    #region Variables
 
-    public int health;
+    [Header("Player stuffs")]
+    public Transform start;
+    [HideInInspector] public int health;
+
+    #endregion
 
     void Start()
     {
 
-        health = 3;
+        health = 3; //Doesn't really do anything atm
 
     }
 
@@ -21,19 +25,31 @@ public class GridPlayer : MonoBehaviour
     {
         
         //Movement
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) //it's WASD, movement still works the same lol
         {
 
             transform.position += new Vector3((Input.GetAxisRaw("Horizontal") * -1), 0, (Input.GetAxisRaw("Vertical") * -1)); //This is definitely my record for how small I made movement code :D
 
         }
 
+        if (health <= 0) //game over :(
+            GameOver();
+
     }
 
-    public void Return()
+    public void Return() //bye bye
     {
 
         transform.position = start.position;
+        health--;
+
+    }
+
+    public void GameOver() //Will do more in da futureeeee
+    {
+
+        Debug.Log("Game Over. You did well, don't sweat it.");
+        Destroy(this.gameObject);
 
     }
 

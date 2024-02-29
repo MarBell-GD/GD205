@@ -5,15 +5,22 @@ using UnityEngine;
 public class GridHazard : MonoBehaviour
 {
 
-    public GameObject player;
+    #region Variables
+
+    [Header("DANGER DANGER DANGERRRR")]
     public float duration;
+    public float lifetime;
 
     float timeElapsed;
+    float lifespan;
+
+    #endregion
 
     private void Start()
     {
 
         timeElapsed = 0f;
+        lifespan = 0f;
 
     }
 
@@ -21,19 +28,7 @@ public class GridHazard : MonoBehaviour
     void Update()
     {
 
-        GridPlayer stats = player.GetComponent<GridPlayer>();
-
-
-        if (player.transform.position == this.transform.position)
-        {
-
-            Debug.Log("You hit something!");
-            stats.Return();
-            Destroy(this.gameObject);
-
-        }
-
-        if(timeElapsed >= duration)
+        if(timeElapsed >= duration) //Move forward after a bit of time passes
         {
 
             transform.position += Vector3.forward;
@@ -41,7 +36,28 @@ public class GridHazard : MonoBehaviour
 
         }
 
+        if (lifespan >= lifetime)
+            Destroy(this.gameObject);
+
         timeElapsed += Time.deltaTime;
+        lifespan += Time.deltaTime;
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        GridPlayer player = other.GetComponent<GridPlayer>();
+
+
+        if (other.gameObject.tag == "Player")
+        {
+
+            Debug.Log("You hit a boulder, try to time your movements! 1 health lost!");
+            player.Return();
+
+        }
+
+    }
+
 }
