@@ -50,6 +50,21 @@ public class UUFOMovement : MonoBehaviour
 
         }
 
+        if(Input.GetKey(KeyCode.Q))
+        {
+
+            rb.AddForce(transform.up * initspd);
+
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+
+            Vector3 down = new Vector3(0f, -1f, 0f);
+            rb.AddForce(down * initspd);
+
+        }
+
     }
 
 }
