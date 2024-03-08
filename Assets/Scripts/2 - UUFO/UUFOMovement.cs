@@ -67,4 +67,17 @@ public class UUFOMovement : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if(other.gameObject.tag == "artifact")
+        {
+
+            Debug.Log("You got an artifact, this will be beneficial for our race!");
+            Destroy(other.gameObject);
+
+        }
+
+    }
+
 }
