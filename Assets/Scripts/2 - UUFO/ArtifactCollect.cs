@@ -29,13 +29,14 @@ public class ArtifactCollect : MonoBehaviour
 
         float trueDistance = Vector3.Distance(magnetTarget.position, this.gameObject.transform.position);
 
-        if (trueDistance <= 10)
+        if (trueDistance <= 15)
             beingMagnetized = true;
 
         if (beingMagnetized)
         {
 
-            rb.AddForce(magnetDirection * magSpd);
+            //rb.AddForce(magnetDirection * magSpd); <== da old method
+            transform.position = Vector3.MoveTowards(transform.position, magnetTarget.position, magSpd * Time.deltaTime);
 
         }
 
