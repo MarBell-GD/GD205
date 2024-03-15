@@ -25,7 +25,7 @@ public class ArtifactCollect : MonoBehaviour
     {
 
         Vector3 magnetDistance = magnetTarget.position - this.gameObject.transform.position;
-        Vector3 magnetDirection = Vector3.Normalize(magnetDistance);
+        //Vector3 magnetDirection = Vector3.Normalize(magnetDistance); <=== obselete code lol
 
         float trueDistance = Vector3.Distance(magnetTarget.position, this.gameObject.transform.position);
 
