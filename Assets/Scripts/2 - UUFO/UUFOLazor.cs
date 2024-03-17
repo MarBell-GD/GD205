@@ -6,6 +6,7 @@ public class UUFOLazor : MonoBehaviour
 {
 
     LineRenderer laserRender;
+    public Material laserColor;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,6 @@ public class UUFOLazor : MonoBehaviour
 
         }
 
-        
-
     }
+
 }
