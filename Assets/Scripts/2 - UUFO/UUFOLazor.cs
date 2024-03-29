@@ -8,6 +8,8 @@ public class UUFOLazor : MonoBehaviour
     LineRenderer laserRender;
     public Material laserColor;
 
+    public GameObject expParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +28,16 @@ public class UUFOLazor : MonoBehaviour
         Ray laser = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit = new RaycastHit();
 
-        if(Physics.Raycast(laser, out hit))
+        laserRender.SetPosition(0, transform.position);
+
+        if (Physics.Raycast(laser, out hit))
         {
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
 
-                laserRender.SetPosition(0, transform.position);
                 laserRender.SetPosition(1, hit.point);
+                Instantiate(expParticles, hit.point, Quaternion.identity);
 
             }
 
