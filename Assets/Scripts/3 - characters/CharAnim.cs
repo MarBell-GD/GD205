@@ -24,14 +24,15 @@ public class CharAnim : MonoBehaviour
     void Update()
     {
 
-        Vector3 move = new Vector3(Input.GetAxisRaw("Vertical"), 0f, Input.GetAxisRaw("Horizontal"));
-        Vector3 trueMove = new Vector3(Input.GetAxisRaw("Vertical") * 0.1f, 0f, Input.GetAxisRaw("Horizontal") * 0.1f);
+        Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        //Vector3 trueMove = new Vector3(Input.GetAxisRaw("Horizontal") * 0.005f, 0f, Input.GetAxisRaw("Vertical") * 0.005f);
+        Vector3 trueMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical") * 0.005f);
 
-        if (move.x == 1 || move.x == -1)
+        if (move.z == 1 || move.z == -1)
         {
 
-            anim.SetFloat("movement", Input.GetAxisRaw("Vertical"));
-            ctrl.Move(move);
+            anim.SetFloat("movement", Mathf.Abs(Input.GetAxisRaw("Vertical")));
+            ctrl.Move(trueMove);
             
         }
         else
