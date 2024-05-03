@@ -6,8 +6,6 @@ using UnityEngine;
 public class Gear : ScriptableObject
 {
 
-    [HideInInspector] public int ID;
-
     public string Name;
     [TextArea(3, 5)] public string Description;
 
