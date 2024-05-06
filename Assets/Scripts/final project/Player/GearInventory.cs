@@ -36,6 +36,10 @@ public class GearInventory : MonoBehaviour
     float currentDimRate;
     public float chargedDimRate; //Dim rate when Supercharged, should be lower than normal Dim
 
+    [Header("Gear #1: \"AtomoZ Blacklight Camera\"")]
+    public Gear blCamGear;
+    public GameObject blCamObj;
+
     #endregion
 
     private void Start()
@@ -63,6 +67,7 @@ public class GearInventory : MonoBehaviour
 
         EquipCheck();
         FlashlightCheck();
+        BLCamCheck();
 
         #endregion
 
@@ -213,6 +218,24 @@ public class GearInventory : MonoBehaviour
 
         if(battery <= 0f)
             flashlightLight.enabled = false;
+
+    }
+
+    void BLCamCheck()
+    {
+
+        if(equippedGear == blCamGear)
+        {
+
+            blCamObj.SetActive(true);
+
+        }
+        else if (equippedGear == null || equippedGear != blCamGear)
+        {
+
+            blCamObj.SetActive(false);
+
+        }
 
     }
 
